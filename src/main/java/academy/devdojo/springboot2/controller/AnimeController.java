@@ -67,13 +67,13 @@ public class AnimeController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Anime> delete(@PathVariable Long id) {
+    public ResponseEntity<Void> delete(@PathVariable Long id) {
         animeService.delete(id);
         return ResponseEntity.noContent().build();
     }
 
     @PutMapping
-    public ResponseEntity<Anime> replace(@RequestBody AnimePutRequestBody anime) {
+    public ResponseEntity<Void> replace(@RequestBody AnimePutRequestBody anime) {
         animeService.replace(anime);
         return ResponseEntity.noContent().build();
     }

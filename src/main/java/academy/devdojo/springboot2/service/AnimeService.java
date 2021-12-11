@@ -49,9 +49,9 @@ public class AnimeService {
         animeRepository.delete(findByIdOrThrowBadRequestException(id));
     }
 
-    public void replace(AnimePutRequestBody animePostRequestBody) {
-        findByIdOrThrowBadRequestException(animePostRequestBody.getId());
-        Anime anime = AnimeMapper.INSTANCE.toAnime(animePostRequestBody);
+    public void replace(AnimePutRequestBody animePutRequestBody) {
+        findByIdOrThrowBadRequestException(animePutRequestBody.getId());
+        Anime anime = AnimeMapper.INSTANCE.toAnime(animePutRequestBody);
         animeRepository.save(anime);
     }
 
