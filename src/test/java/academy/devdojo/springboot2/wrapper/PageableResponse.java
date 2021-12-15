@@ -5,6 +5,7 @@ import java.util.List;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.JsonNode;
 
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
@@ -30,7 +31,8 @@ public class PageableResponse<T> extends PageImpl<T> {
             @JsonProperty("totalPages") int totalPages,
             @JsonProperty("numberOfElement") int numberOfElement,
             @JsonProperty("numberOfElements") int numberOfElements,
-            @JsonProperty("pageable") Object pageable) {
+            @JsonProperty("pageable") JsonNode pageable,
+            @JsonProperty("sort") JsonNode sort) {
         super(content, PageRequest.of(number, size), totalElements);
 
         this.last = last;

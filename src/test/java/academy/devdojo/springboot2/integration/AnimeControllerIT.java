@@ -13,6 +13,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.http.HttpMethod;
 
 import academy.devdojo.springboot2.domain.Anime;
+import academy.devdojo.springboot2.repository.AnimeRepository;
 import academy.devdojo.springboot2.util.AnimeCreator;
 import academy.devdojo.springboot2.wrapper.PageableResponse;
 
@@ -20,19 +21,20 @@ import academy.devdojo.springboot2.wrapper.PageableResponse;
 @AutoConfigureTestDatabase
 public class AnimeControllerIT {
 
+    @LocalServerPort
+    private int port;
+
     @Autowired
     private TestRestTemplate testRestTemplate;
 
-    @LocalServerPort
-    private int port;
+    @Autowired
+    private AnimeRepository animeRepository;
 
     @Test
     @DisplayName("list returns list of anime inside page object when successful")
     void list_ReturnsListOfAnimesInsidePageObject_WhenSuccessful() {
-        String expectedName = AnimeCreator.createValidAnime().getName();
-
-        // Page<Anime> animePage = get("/animes",
-        // getPageableResponseType(Anime.class)).getBody();
+        Anime savedAnime = animeRepository.save(AnimeCreator.createAnimeToBeSaved());
+        String expectedName = savedAnime.getName();
         Page<Anime> animePage = testRestTemplate
                 .exchange("/animes", HttpMethod.GET, null, new ParameterizedTypeReference<PageableResponse<Anime>>() {
                 }).getBody();
