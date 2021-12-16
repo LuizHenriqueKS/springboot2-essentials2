@@ -24,6 +24,7 @@ import academy.devdojo.springboot2.request.AnimePostRequestBody;
 import academy.devdojo.springboot2.request.AnimePutRequestBody;
 import academy.devdojo.springboot2.service.AnimeService;
 import academy.devdojo.springboot2.util.AnimeCreator;
+import academy.devdojo.springboot2.util.AnimePostRequestBodyCreator;
 import academy.devdojo.springboot2.util.AnimePutRequestBodyCreator;
 import academy.devdojo.springboot2.util.DateUtil;
 
@@ -84,10 +85,10 @@ public class AnimeControllerTest {
     @Test
     @DisplayName("findById returns an anime when successful")
     void findById_ReturnsAnime_WhenSuccessful() {
-        Long exepectedId = AnimeCreator.createValidAnime().getId();
-        Anime anime = animeController.findById(exepectedId).getBody();
+        Long expectedId = AnimeCreator.createValidAnime().getId();
+        Anime anime = animeController.findById(expectedId).getBody();
         Assertions.assertThat(anime).isNotNull();
-        Assertions.assertThat(anime.getId()).isEqualTo(exepectedId);
+        Assertions.assertThat(anime.getId()).isEqualTo(expectedId);
     }
 
     @Test
@@ -113,6 +114,13 @@ public class AnimeControllerTest {
         Assertions.assertThat(animeList)
                 .isNotNull()
                 .isEmpty();
+    }
+
+    @Test
+    @DisplayName("save returns anime when successful")
+    void save_ReturnsAnime_WhenSuccessful() {
+        Anime anime = animeController.save(AnimePostRequestBodyCreator.createAnimePostRequestBody()).getBody();
+        Assertions.assertThat(anime).isNotNull().isEqualTo(AnimeCreator.createValidAnime());
     }
 
     @Test

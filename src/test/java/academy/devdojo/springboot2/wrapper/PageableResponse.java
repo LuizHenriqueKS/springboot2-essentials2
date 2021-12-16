@@ -15,10 +15,10 @@ import lombok.Setter;
 @Setter
 public class PageableResponse<T> extends PageImpl<T> {
 
-    private boolean first;
-    private boolean last;
-    private int totalPages;
-    private int numberOfElements;
+    boolean first;
+    boolean last;
+    int totalPages;
+    int numberOfElements;
 
     @JsonCreator
     @JsonIgnoreProperties(ignoreUnknown = true)

@@ -16,6 +16,7 @@ import academy.devdojo.springboot2.util.AnimeCreator;
 
 @DataJpaTest
 @DisplayName("Tests for Anime Repository")
+// @AutoConfigureTestDatabase
 // @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 // //USA O BANCO REALMENTE CONFIGURADO - SEM ISSO USA UM BANCO NA MEMORIA
 public class AnimeRepositoryTest {
