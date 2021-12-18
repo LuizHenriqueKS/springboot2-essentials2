@@ -28,11 +28,17 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers("/animes/admin/**").hasRole("ADMIN")
                 .antMatchers("/animes/**").hasRole("USER")
-                .antMatchers("/animes/**") // COMENTADO PARA DEIXAR A DOCUMENTAÇÃO PUBLICA
+                .antMatchers("/actuator/**").hasRole("ADMIN")
+                .antMatchers("/swagger-ui.html").permitAll()
+                .antMatchers("/swagger-ui/**").permitAll()
+                .antMatchers("/v3/api-docs").permitAll()
+                .anyRequest()
                 .authenticated()
                 .and().httpBasic()
                 // .and().formLogin()
-                .and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS); // NÃO USA COOKIES
+                .and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS); // NÃO
+                                                                                                   // USA
+                                                                                                   // COOKIES
     }
 
     @Override

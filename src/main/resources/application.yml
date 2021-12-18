@@ -17,4 +17,16 @@ logging:
             hibernate:
                 SQL: DEBUG
 
-springdoc.swagger-ui.disable-swagger-default-url: true
+springdoc:
+    swagger-ui:
+        disable-swagger-default-url: false
+
+management:
+    endpoints:  
+        web:
+            exposure:
+                include: "*"
+
+info:
+    app: Spring Boot 2 Essentials
+    website: https://github.com/LuizHenriqueKS/springboot2-essentials2
