@@ -23,13 +23,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http
-                .csrf().disable()
+        http.csrf().disable()
                 // .csrf().csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
                 .authorizeRequests()
                 .antMatchers("/animes/admin/**").hasRole("ADMIN")
                 .antMatchers("/animes/**").hasRole("USER")
-                .anyRequest()
+                .antMatchers("/animes/**") // COMENTADO PARA DEIXAR A DOCUMENTAÇÃO PUBLICA
                 .authenticated()
                 .and().httpBasic()
                 // .and().formLogin()
