@@ -17,6 +17,8 @@
         <org.mapstruct.version>1.4.2.Final</org.mapstruct.version>
         <springdoc-openapi-ui.version>1.6.1</springdoc-openapi-ui.version>
         <log4j2.version>2.17.0</log4j2.version>
+        <jib-maven-plugin.version>3.1.4</jib-maven-plugin.version>
+        <docker.image.name>zul/springboot2-essentials</docker.image.name>
     </properties>
     <dependencies>
 
@@ -201,6 +203,25 @@
                             <version>${org.mapstruct.version}</version>
                         </path>
                     </annotationProcessorPaths>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>com.google.cloud.tools</groupId>
+                <artifactId>jib-maven-plugin</artifactId>
+                <version>${jib-maven-plugin.version}</version>
+                <configuration>
+                    <from>
+                        <image>adoptopenjdk:11-jre</image>
+                    </from>
+                    <to>
+                        <image>${docker.image.name}</image>
+                        <tags>
+                            <version>${project.version}</version>
+                        </tags>
+                    </to>
+                    <container>
+                        <mainClass>academy.devdojo.springboot2.Springboot2Essentials2Application</mainClass>
+                    </container>
                 </configuration>
             </plugin>
         </plugins>
