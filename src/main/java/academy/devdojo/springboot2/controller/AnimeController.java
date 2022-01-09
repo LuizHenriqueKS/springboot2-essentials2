@@ -45,7 +45,7 @@ public class AnimeController {
     @GetMapping
     @Operation(summary = "List all animes paginated", description = "The default size is 20, use the parameter size to change the default value", tags = {
             "anime" })
-    public ResponseEntity<Page<Anime>> list(@ParameterObject() Pageable pageable) {
+    public ResponseEntity<Page<Anime>> list(@ParameterObject Pageable pageable) {
         log.info(dateUtil.formatLocalDateTimeToDatabaseStyle(LocalDateTime.now()));
         return ResponseEntity.ok(animeService.listAll(pageable));
     }
